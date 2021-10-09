@@ -1,0 +1,285 @@
+\documentclass[reprint,english,notitlepage]{revtex4-1}  % defines the basic parameters of the document
+
+% if you want a single-column, remove reprint
+
+% allows special characters (including æøå)
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+%% note that you may need to download some of these packages manually, it depends on your setup.
+%% I recommend downloading TeXMaker, because it includes a large library of the most common packages.
+
+\usepackage{physics,amssymb}  % mathematical symbols (physics imports amsmath)
+\usepackage{graphicx}         % include graphics such as plots
+\usepackage{xcolor}           % set colors
+\usepackage{hyperref}         % automagic cross-referencing (this is GODLIKE)
+\usepackage{tikz}             % draw figures manually
+\usepackage{listings}         % display code
+\usepackage{subfigure}        % imports a lot of cool and useful figure commands
+
+% defines the color of hyperref objects
+% Blending two colors:  blue!80!black  =  80% blue and 20% black
+\hypersetup{ % this is just my personal choice, feel free to change things
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}}
+
+%% Defines the style of the programming listing
+%% This is actually my personal template, go ahead and change stuff if you want
+\lstset{ %
+	inputpath=,
+	backgroundcolor=\color{white!88!black},
+	basicstyle={\ttfamily\scriptsize},
+	commentstyle=\color{magenta},
+	language=Python,
+	morekeywords={True,False},
+	tabsize=4,
+	stringstyle=\color{green!55!black},
+	frame=single,
+	keywordstyle=\color{blue},
+	showstringspaces=false,
+	columns=fullflexible,
+	keepspaces=true}
+
+
+%% USEFUL LINKS:
+%%
+%%   UiO LaTeX guides:        https://www.mn.uio.no/ifi/tjenester/it/hjelp/latex/ 
+%%   mathematics:             https://en.wikibooks.org/wiki/LaTeX/Mathematics
+
+%%   PHYSICS !                https://mirror.hmc.edu/ctan/macros/latex/contrib/physics/physics.pdf
+
+%%   the basics of Tikz:       https://en.wikibooks.org/wiki/LaTeX/PGF/TikZ
+%%   all the colors!:          https://en.wikibooks.org/wiki/LaTeX/Colors
+%%   how to draw tables:       https://en.wikibooks.org/wiki/LaTeX/Tables
+%%   code listing styles:      https://en.wikibooks.org/wiki/LaTeX/Source_Code_Listings
+%%   \includegraphics          https://en.wikibooks.org/wiki/LaTeX/Importing_Graphics
+%%   learn more about figures  https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions
+%%   automagic bibliography:   https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management  (this one is kinda difficult the first time)
+%%   REVTeX Guide:             http://www.physics.csbsju.edu/370/papers/Journal_Style_Manuals/auguide4-1.pdf
+%%
+%%   (this document is of class "revtex4-1", the REVTeX Guide explains how the class works)
+
+
+%% CREATING THE .pdf FILE USING LINUX IN THE TERMINAL
+%% 
+%% [terminal]$ pdflatex template.tex
+%%
+%% Run the command twice, always.
+%% If you want to use \footnote, you need to run these commands (IN THIS SPECIFIC ORDER)
+%% 
+%% [terminal]$ pdflatex template.tex
+%% [terminal]$ bibtex template
+%% [terminal]$ pdflatex template.tex
+%% [terminal]$ pdflatex template.tex
+%%
+%% Don't ask me why, I don't know.
+
+\begin{document}
+\title{Equations}   % self-explanatory
+\author{Henrik Modahl Breitenstein}               % self-explanatory
+\date{\today}                             % self-explanatory
+\noaffiliation                            % ignore this                           % marks the end of the abstract
+\maketitle
+
+\section*{First Law}
+
+Energy is always conserved. It can not be made or disappear for a closed system.
+
+\begin{equation}
+\label{first}
+\Delta{U} = Q + W \; .
+\end{equation}
+
+Where $U$ is the internal energy, $Q$ is the heat and $W$ is the work.
+
+\section*{Second Law}
+
+For a isolated system the change in entropy is never below zero.
+
+\begin{equation}
+\label{second}
+\Delta{S} \geq 0
+\end{equation}
+
+For reference
+
+\begin{equation}\label{ent}
+\Delta{S} = \int_{T_1}^{T_2} \frac{C_V}{T} \; dT
+\end{equation}
+\section*{Third Law}
+
+If the entropy is constant, then the temperature doesn't change.
+
+\begin{align*}
+\label{third law}
+\frac{\partial S_1}{\partial U_1} = \frac{\partial S_2}{\partial U_2} &\leftrightarrow T_1 = T_2 \; , \; \text{Thermodynamic} \;  \\
+\frac{\partial S_1}{\partial V_1} = \frac{\partial S_2}{\partial V_2} &\leftrightarrow P_1 = P_2 \; , \; \text{Mechanical} \\
+\frac{\partial S_1}{\partial N_1} = \frac{\partial S_2}{\partial N_2} &\leftrightarrow \mu_1 = \mu_2 \; , \; \text{Chemical}
+\end{align*}
+
+\section*{Multiplicity}
+
+\begin{equation}
+S = k \ln{\Omega}
+\end{equation}
+
+$$ S_{\text{total}} = S_A + S_B$$
+
+Stirling's approximation
+
+$$N! \approx N^Ne^{-N}\sqrt{2 \pi N}$$
+
+For monatomic ideal gas
+
+
+$$\Omega_N = \frac{1}{N!} \frac{V^N}{h^{3N}} \frac{2\pi^{P3N/2}}{(\frac{3N}{2} - 1 )!} \left ( \sqrt{2mU} \right ) ^{3N - 1}$$
+Sackur-Tetrode equation
+$$S = Nk\left [ \ln{ \left ( \frac{V}{N} \left ( \frac{4\pi mU}{3Nh^2} \right ) ^{3/2} \right )} + \frac{5}{2} \right ]$$
+
+For mixing
+
+$$\Delta{S}_{\text{mixing}} = -R[x \ln x + (1-x)\ln(1-x)]$$
+$$G_{\text{mixing}} = G - T\Delta{S}_{\text{mixing}}$$
+
+Stays in mixed state since
+
+$$G_{\text{mixing}} < G$$
+\section*{State variables and functions}
+
+When we specify the equilibrium with a given value of some variable, that variable is a state variable.
+
+$$ N, \; V, \; P , \; T , \; \mu, \; U, \; S , \; H, \; F, \; G $$ 
+
+A state variable is a variable dependent on other variables.
+
+Extensive variables are variables scaling with the system.
+
+$$N, \; V, \; U , \; S , \; m, \; C_V $$
+
+Intensive variables are variables which stay constant through system-scaling.
+
+$$T, \; P, \; \mu, \; \rho$$
+
+\section*{Energies}
+
+\begin{center}
+Thermodynamic Identity
+\end{center}
+
+\begin{equation}
+\mathrm{d} U = T \mathrm{S} - P\mathrm{V} + \mu \mathrm{N}
+\end{equation}
+
+\begin{center}
+Enthalpy
+\end{center}
+
+\begin{equation}
+ H \equiv U + PV = H(S, P, N)
+\end{equation}
+
+
+\begin{center}
+Helmotz
+\end{center}
+
+\begin{equation}
+ F \equiv U -TS = F(T, V, N)
+\end{equation}
+
+
+\begin{center}
+Gibbs
+\end{center}
+
+\begin{equation}
+ G \equiv U -TS + PV = G(T, P, N)
+\end{equation}
+
+
+\begin{center}
+Grand
+\end{center}
+
+\begin{equation}
+ \Phi \equiv U -TS - \mu N = \Phi (V, T, N)
+\end{equation}
+
+\subsection*{Definitions}
+
+The different energy-definitions gives us new ways to redefine variables.
+
+\begin{equation}\label{T}
+T = \left ( \frac{\partial U}{\partial S} \right )_{N,V} = \left ( \frac{\partial H}{\partial S} \right )_{N, P}
+\end{equation}
+
+\begin{equation}\label{P}
+P = \left ( \frac{\partial S}{\partial V} \right )_{N, U} = -\left ( \frac{\partial F}{\partial V} \right )_{N, T} = -\left ( \frac{\partial \Phi}{\partial V} \right )_{\mu, T}
+\end{equation}
+
+\begin{equation}\label{mu}
+\mu = - T \left ( \frac{\partial S}{\partial N} \right )_{U, V} = \left ( \frac{\partial H}{\partial N} \right )_{S, P} = \left ( \frac{\partial F}{\partial N} \right )_{V, T} = \left ( \frac{\partial G}{\partial N} \right )_{T, P}
+\end{equation}
+
+\begin{equation}\label{cv}
+C_V= \left ( \frac{\partial U}{\partial T} \right )_{N, V}
+\end{equation}
+
+\begin{equation}
+V = \left ( \frac{\partial H}{\partial P} \right )_{N, S} = \left ( \frac{\partial G}{\partial P} \right )_{N, T}
+\end{equation}
+
+\begin{equation}\label{entdef}
+S = - \left ( \frac{\partial F}{\partial T} \right )_{N, V} = -\left ( \frac{\partial G}{\partial T} \right )_{N, P} = - \left ( \frac{\partial \Phi}{\partial T} \right )_{\mu, V}
+\end{equation}
+
+\begin{equation}
+N = \left ( \frac{\partial \Phi}{\partial \mu} \right )_{V, T}
+\end{equation}
+\section*{Maxwells Relations}
+
+For a state function $f$ with natural variables $x$ and $y$, we have the symmetry:
+
+\begin{equation}
+\frac{\partial^2 f}{\partial x \partial y} =  \frac{\partial^2 f}{\partial y \partial x}
+\end{equation}
+
+With $U$, $G$, $H$, and $F$ this gives us the relations
+
+$$ \left( \frac{\partial T }{\partial V} \right )_S = - \left( \frac{\partial P }{\partial S} \right )_V$$
+$$ \left( \frac{\partial T }{\partial P} \right )_S = \left( \frac{\partial V }{\partial S} \right )_P $$
+$$ \left( \frac{\partial S }{\partial V} \right )_T = \left( \frac{\partial P }{\partial T} \right )_V $$
+$$ -\left( \frac{\partial S }{\partial P} \right )_T = \left( \frac{\partial V }{\partial T} \right )_P $$
+
+\section*{Second Law for F an G}
+Hold $(N, V, T)$ constant
+
+$$\Delta{F} \leq 0 \; .$$
+
+Hold $(N,P,T)$ constant
+
+$$ \Delta{G} \leq 0 \; .$$
+\section*{Trouton's Rule}
+
+$$\Delta{S}_{\text{vap}} = \frac{\Delta H }{T_b} \approx 85 \frac{J}{mol \cdot K} $$
+
+\section*{Clasusis-Clapeyron Relation}
+
+$$\ln{\frac{P1}{P2}} = - \frac{\Delta H}{R} \left ( \frac{1}{T_1} - \frac{1}{T_2} \right)$$
+
+\section*{Osmotic Pressure}
+
+Van't Hoffs formula
+
+$$(P_1 - P_2) = \frac{kTN_B}{V} = \frac{RTn_B}{V}$$
+
+\section{Constants}
+
+Gas constant
+
+$$R = 8.3145 \frac{J}{mol \cdot K}$$
+$$k = 1.38064852 \cdot 10^{-23} \; m^2 \; kg \; s^{-2} K^{-1}$$
+
+\end{document}
